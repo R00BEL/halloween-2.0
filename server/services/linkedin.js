@@ -14,4 +14,32 @@ export class Linkedin {
 
     return http(url, config);
   }
+
+  registerImage(http, userId) {
+    const url = "https://api.linkedin.com/v2/assets?action=registerUpload";
+    const body = {
+      registerUploadRequest: {
+        owner: `urn:li:person:${userId}`,
+        recipes: ["urn:li:digitalmediaRecipe:feedshare-image"],
+        serviceRelationships: [
+          {
+            identifier: "urn:li:userGeneratedContent",
+            relationshipType: "OWNER",
+          },
+        ],
+        supportedUploadMechanism: ["SYNCHRONOUS_UPLOAD"],
+      },
+    };
+    const config = {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Restli-Protocol-Version": "2.0.0",
+        Authorization: `Bearer ${this.token}`,
+      },
+      body: JSON.stringify(body),
+    };
+
+    return http(url, config);
+  }
 }
