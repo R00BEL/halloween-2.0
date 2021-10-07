@@ -1,11 +1,17 @@
-import express from 'express';
+import express from "express";
 
 const app = express();
 
-app.get('/', (req, res) => {
-				res.send('Hello World!');
+app.post("/linkedin/user/post", (req, res) => {
+  res.send("Hello World!");
 });
 
-app.listen(3000, () =>
-				console.log('Example app listening on port 3000!'),
-);
+app.use((req, res, error, next) => {
+  if (error) {
+    res.code(500).json({ error });
+  }
+
+  next();
+});
+
+app.listen(3000, () => console.log("Example app listening on port 3000!"));
