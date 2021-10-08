@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
     "node-fetch": "^3.0.0",
     "nodemon": "^2.0.12",
     "prettier": "^2.4.0"

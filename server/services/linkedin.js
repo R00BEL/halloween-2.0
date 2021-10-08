@@ -42,4 +42,18 @@ export class Linkedin {
 
     return http(url, config);
   }
+
+  imageUpload(http, uploadUrl, data) {
+    const config = {
+      method: "put",
+      headers: {
+        "Content-Type": "application/octet-stream",
+        "X-Restli-Protocol-Version": "2.0.0",
+        Authorization: `Bearer ${this.token}`,
+      },
+      body: data,
+    };
+
+    return http(uploadUrl, config);
+  }
 }
