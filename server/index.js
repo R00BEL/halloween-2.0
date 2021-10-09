@@ -1,8 +1,9 @@
 import express from "express";
-import { Linkedin } from "./services/linkedin";
-import { Fetch } from "./utils/fetch";
 import asyncHandler from "express-async-handler";
 import fileupload from "express-fileupload";
+
+import { Linkedin } from "./services/linkedin/linkedin";
+import { Fetch } from "./utils/fetch";
 
 const app = express();
 app.use(fileupload());
@@ -10,10 +11,11 @@ app.use(fileupload());
 app.post(
   "/linkedin/user/post",
   asyncHandler(async (req, res) => {
-    const [, accessToken] = req.headers.authorization.split(" ");
-    if (!accessToken) {
-      return res.status(401).json();
+    const authorization = req.headers?.authorization;
+    if (!authorization) {
+      return res.status(400).json();
     }
+    const [, accessToken] = req.headers.authorization.split(" ");
 
     const file = req.files?.file;
     if (!file) {
@@ -33,12 +35,16 @@ app.post(
 
     await linkedin.imageUpload(Fetch, uploadUrl, file.data);
     await linkedin.postCreation(Fetch, user.id, registeredPicture.value.asset);
-    res.send(registeredPicture);
+    res.send();
   })
 );
 
 app.use((error, req, res, next) => {
-  res.status(500).json({ error });
+  res.status(error.code || 500);
+  res.json({
+    message: error.message || "Something went wrong",
+  });
+  next();
 });
 
 app.listen(3000, () => console.log("Example app listening on port 3000!"));
