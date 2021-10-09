@@ -56,4 +56,35 @@ export class Linkedin {
 
     return http(uploadUrl, config);
   }
+
+  postCreation(http, userId, pictureToken) {
+    const url = "https://api.linkedin.com/v2/shares";
+    const body = {
+      owner: `urn:li:person:${userId}`,
+      text: {
+        text: "Try to beat my record! https://www.example.com/content.html",
+      },
+      subject: "Test Share Subject",
+      distribution: {
+        linkedInDistributionTarget: {},
+      },
+      content: {
+        contentEntities: [
+          {
+            entity: `${pictureToken}`,
+          },
+        ],
+        shareMediaCategory: "IMAGE",
+      },
+    };
+    const config = {
+      method: "post",
+      headers: {
+        Authorization: `Bearer ${this.token}`,
+      },
+      body: JSON.stringify(body),
+    };
+
+    return http(url, config);
+  }
 }

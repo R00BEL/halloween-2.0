@@ -32,6 +32,7 @@ app.post(
       ].uploadUrl;
 
     await linkedin.imageUpload(Fetch, uploadUrl, file.data);
+    await linkedin.postCreation(Fetch, user.id, registeredPicture.value.asset);
     res.send(registeredPicture);
   })
 );
