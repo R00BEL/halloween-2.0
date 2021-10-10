@@ -84,7 +84,6 @@ export class Linkedin {
       },
       body: JSON.stringify(body),
     };
-
     return http(url, config);
   }
 }

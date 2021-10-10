@@ -4,7 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "start:dev": "nodemon --experimental-modules --es-module-specifier-resolution=node index.js"
+    "start:dev": "nodemon --experimental-modules --es-module-specifier-resolution=node index.js",
+    "test": "jest"
   },
   "dependencies": {
     "express": "^4.17.1",
@@ -21,6 +22,7 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "jest": "^27.2.5",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
