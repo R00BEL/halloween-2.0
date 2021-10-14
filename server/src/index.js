@@ -2,8 +2,8 @@ import express from "express";
 import asyncHandler from "express-async-handler";
 import fileupload from "express-fileupload";
 
-import { Linkedin } from "./services/linkedin/linkedin";
-import { Fetch } from "./utils/fetch";
+import { Linkedin } from "../services/linkedin/linkedin";
+import { Fetch } from "../utils/fetch";
 
 const app = express();
 app.use(fileupload());

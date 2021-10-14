@@ -4,8 +4,9 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "start:dev": "nodemon --experimental-modules --es-module-specifier-resolution=node index.js",
-    "test": "jest"
+    "start:dev": "nodemon --experimental-modules --es-module-specifier-resolution=node src/index.js",
+    "test": "jest",
+    "test-coverage": "jest --coverage"
   },
   "dependencies": {
     "express": "^4.17.1",
