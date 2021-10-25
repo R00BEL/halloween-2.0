@@ -21,7 +21,7 @@ app.post(
     if (!file) {
       return res.status(400).json({
         message:
-          "A file must be attached to the request. The file must be in the field 'file'",
+          "A file must be attached to the request. The file must be in the field 'file'"
       });
     }
 
@@ -42,7 +42,7 @@ app.post(
 app.use((error, req, res, next) => {
   res.status(error.code || 500);
   res.json({
-    message: error.message || "Something went wrong",
+    message: error.message || "Something went wrong"
   });
   next();
 });
